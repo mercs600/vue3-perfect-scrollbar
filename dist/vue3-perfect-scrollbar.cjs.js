@@ -73,7 +73,7 @@ var PerfectScrollbar$1 = {
   methods: {
     create () {
       if (!(this.ps && this.$isServer)) {
-        this.ps = new PerfectScrollbar(this.$refs.container, this.options);
+        this.ps = new PerfectScrollbar(this.$el, this.options);
 
         eventNames.forEach(eventName => {
           this.ps.element.addEventListener(eventName, event => this.$emit(eventName, event));
@@ -103,40 +103,40 @@ var PerfectScrollbar$1 = {
   render () {
     return vue.h(this.tag,
       {
-        ref: 'container',
         class: 'ps'
       },
-      this.$slots.default())
+      this.$slots.default && this.$slots.default())
   }
 };
 
-function install (Vue, settings) {
-  if (settings) {
-    if (settings.name && typeof settings.name === 'string') {
-      PerfectScrollbar$1.name = settings.name;
+var index = {
+  install: (Vue, settings) => {
+    if (settings) {
+      if (settings.name && typeof settings.name === 'string') {
+        PerfectScrollbar$1.name = settings.name;
+      }
+
+      if (settings.options && typeof settings.options === 'object') {
+        PerfectScrollbar$1.props.options.default = () => {
+          return settings.options
+        };
+      }
+
+      if (settings.tag && typeof settings.tag === 'string') {
+        PerfectScrollbar$1.props.tag.default = settings.tag;
+      }
+
+      if (settings.watchOptions && typeof settings.watchOptions === 'boolean') {
+        PerfectScrollbar$1.props.watchOptions = settings.watchOptions;
+      }
     }
 
-    if (settings.options && typeof settings.options === 'object') {
-      PerfectScrollbar$1.props.options.default = () => {
-        return settings.options
-      };
-    }
-
-    if (settings.tag && typeof settings.tag === 'string') {
-      PerfectScrollbar$1.props.tag.default = settings.tag;
-    }
-
-    if (settings.watchOptions && typeof settings.watchOptions === 'boolean') {
-      PerfectScrollbar$1.props.watchOptions = settings.watchOptions;
-    }
+    Vue.component(
+      PerfectScrollbar$1.name,
+      PerfectScrollbar$1
+    );
   }
+};
 
-  Vue.component(
-    PerfectScrollbar$1.name,
-    PerfectScrollbar$1
-  );
-}
-
-exports.install = install;
+exports.default = index;
 exports.PerfectScrollbar = PerfectScrollbar$1;
-exports.default = install;
