@@ -1,4 +1,4 @@
-# vue2-perfect-scrollbar
+# vue3-perfect-scrollbar
 Vue.js minimalistic but powerful wrapper for perfect scrollbar
 
 # Why I Created it ? 
@@ -14,13 +14,13 @@ If you have any reasonable PR you are welcome 🤘
 ## npm
 
 ```sh
-npm install vue2-perfect-scrollbar
+npm install vue3-perfect-scrollbar
 ```
 
 ## yarn 
 
 ```sh
-yarn add vue2-perfect-scrollbar
+yarn add vue3-perfect-scrollbar
 ```
 
 # How to use 
@@ -28,10 +28,18 @@ yarn add vue2-perfect-scrollbar
 ## Global Registration
 
 ```js
-import PerfectScrollbar from 'vue2-perfect-scrollbar'
-import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+import { createApp, h } from 'vue'
+import PerfectScrollbar from 'vue3-perfect-scrollbar'
+import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
-Vue.use(PerfectScrollbar)
+const app = createApp({
+  render: () => h(App)
+})
+
+app.use(Vue3PerfectScrollbar)
+
+app.mount('#app')
+
 ```
 
 So then you can use this plugin in each component as
@@ -88,14 +96,14 @@ perfect-scrollbar options.
     </div>
 </template>
 <script>
-import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 export default {
     components: {
         PerfectScrollbar
     }
 }
 </script>
-<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css"/>
+<style src="vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css"/>
 ```
 
 [![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/32o7m59xzm)
@@ -144,7 +152,7 @@ export default {
 
 # DEMO
 
-[https://mercs600.github.io/vue2-perfect-scrollbar/](https://mercs600.github.io/vue2-perfect-scrollbar/). You can also fork example from [codesandbox](https://codesandbox.io/embed/32o7m59xzm)
+[https://mercs600.github.io/vue3-perfect-scrollbar/](https://mercs600.github.io/vue3-perfect-scrollbar/). You can also fork example from [codesandbox](https://codesandbox.io/embed/32o7m59xzm)
 
 # Cookbook
 
@@ -169,4 +177,4 @@ watch: {
 }
 ```
 
-[![Edit vue2-perfect-scrollbar with router](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-routing-example-jbokc?fontsize=14&hidenavigation=1&theme=dark)
+[![Edit vue3-perfect-scrollbar with router](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-routing-example-jbokc?fontsize=14&hidenavigation=1&theme=dark)

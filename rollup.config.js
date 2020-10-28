@@ -8,7 +8,7 @@ const browser = {
   input: 'src/index.js',
   output: {
     format: 'umd',
-    name: 'Vue2PerfectScrollbar',
+    name: 'Vue3PerfectScrollbar',
     file: pkg.browser
   },
   plugins: [
@@ -24,8 +24,8 @@ const browserMin = {
   input: 'src/index.js',
   output: {
     format: 'umd',
-    name: 'Vue2PerfectScrollbar',
-    file: 'dist/vue2-perfect-scrollbar.umd.min.js'
+    name: 'Vue3PerfectScrollbar',
+    file: 'dist/vue3-perfect-scrollbar.umd.min.js'
   },
   plugins: [
     resolve({
