@@ -36,7 +36,7 @@ const app = createApp({
   render: () => h(App)
 })
 
-app.use(Vue3PerfectScrollbar)
+app.use(PerfectScrollbar)
 
 app.mount('#app')
 
