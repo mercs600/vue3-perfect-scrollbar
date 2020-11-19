@@ -1,6 +1,6 @@
 {
   "name": "vue3-perfect-scrollbar",
-  "version": "1.5.0",
+  "version": "1.5.5",
   "description": "Vue.js wrapper for perfect scrollbar",
   "paths": {
     "source": "src",
