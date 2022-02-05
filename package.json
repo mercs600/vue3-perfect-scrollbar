@@ -9,7 +9,6 @@
   },
   "main": "dist/vue3-perfect-scrollbar.cjs.js",
   "module": "dist/vue3-perfect-scrollbar.esm.js",
-  "browser": "dist/vue3-perfect-scrollbar.umd.js",
   "style": "dist/vue3-perfect-scrollbar.css",
   "types": "./types/vue3-perfect-scrollbar.d.ts",
   "scripts": {
@@ -71,5 +70,8 @@
     "cssnano": "^4.1.3",
     "perfect-scrollbar": "^1.5.0",
     "postcss-import": "^12.0.0"
+  },
+  "volta": {
+    "node": "10.24.1"
   }
 }
