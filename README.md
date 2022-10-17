@@ -62,6 +62,15 @@ This plugin will generate a container with ".ps" class name, you need to customi
 
 Install method takes additional parameters:
 
+```js
+app.use(PerfectScrollbar, {
+  watchOptions: true,
+  options: {
+    suppressScrollX: true
+  }
+})
+```
+
 #### `name {String}`
 Name of your global component.
 
@@ -77,7 +86,7 @@ Set true if you want to update perfect-scrollbar on options change
 
 **Default**: `false`
 
-#### `options {Object}`: [Options](https://github.com/utatti/perfect-scrollbar#options)
+#### `options {Object}`: [Options](https://perfectscrollbar.com/#options)
 perfect-scrollbar options.
 
 **Default**: `{}`
