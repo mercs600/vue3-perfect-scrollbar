@@ -12,7 +12,9 @@ const browser = {
     file: pkg.browser
   },
   plugins: [
-    buble(),
+    buble({
+      transforms: { forOf: false }
+    }),
     resolve({
       browser: true, jsnext: true, main: true
     }),
@@ -32,7 +34,9 @@ const browserMin = {
       browser: true, jsnext: true, main: true
     }),
     commonjs(),
-    buble(),
+    buble(
+      { transforms: { forOf: false } }
+    ),
     uglify()
   ]
 }
