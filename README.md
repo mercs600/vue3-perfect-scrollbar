@@ -86,7 +86,7 @@ Set true if you want to update perfect-scrollbar on options change
 
 **Default**: `false`
 
-#### `options {Object}`: [Options](https://perfectscrollbar.com/#section-options)
+#### `options {Object}`: [Options](https://perfectscrollbar.com/options.html)
 perfect-scrollbar options.
 
 **Default**: `{}`
@@ -127,7 +127,7 @@ Set true if you want to update perfect-scrollbar on options change
 
 **Default**: `false`
 
-#### `options {Object}`: [Options](https://github.com/utatti/perfect-scrollbar#options)
+#### `options {Object}`: [Options](https://perfectscrollbar.com/options.html)
 perfect-scrollbar options.
 
 # Events
