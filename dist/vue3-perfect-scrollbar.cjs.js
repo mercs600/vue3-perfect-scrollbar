@@ -2,10 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var vue = require('vue');
-var PerfectScrollbar = _interopDefault(require('perfect-scrollbar'));
+var PerfectScrollbar$1 = require('perfect-scrollbar');
 
 const eventNames = [
   'scroll',
@@ -21,7 +19,7 @@ const eventNames = [
   'ps-x-reach-end'
 ];
 
-var PerfectScrollbar$1 = {
+var PerfectScrollbar = {
   name: 'PerfectScrollbar',
   props: {
     options: {
@@ -73,7 +71,7 @@ var PerfectScrollbar$1 = {
   methods: {
     create () {
       if (!(this.ps && this.$isServer)) {
-        this.ps = new PerfectScrollbar(this.$el, this.options);
+        this.ps = new PerfectScrollbar$1(this.$el, this.options);
 
         eventNames.forEach(eventName => {
           this.ps.element.addEventListener(eventName, event => this.$emit(eventName, event));
@@ -113,30 +111,30 @@ var index = {
   install: (Vue, settings) => {
     if (settings) {
       if (settings.name && typeof settings.name === 'string') {
-        PerfectScrollbar$1.name = settings.name;
+        PerfectScrollbar.name = settings.name;
       }
 
       if (settings.options && typeof settings.options === 'object') {
-        PerfectScrollbar$1.props.options.default = () => {
+        PerfectScrollbar.props.options.default = () => {
           return settings.options
         };
       }
 
       if (settings.tag && typeof settings.tag === 'string') {
-        PerfectScrollbar$1.props.tag.default = settings.tag;
+        PerfectScrollbar.props.tag.default = settings.tag;
       }
 
       if (settings.watchOptions && typeof settings.watchOptions === 'boolean') {
-        PerfectScrollbar$1.props.watchOptions = settings.watchOptions;
+        PerfectScrollbar.props.watchOptions = settings.watchOptions;
       }
     }
 
     Vue.component(
-      PerfectScrollbar$1.name,
-      PerfectScrollbar$1
+      PerfectScrollbar.name,
+      PerfectScrollbar
     );
   }
 };
 
+exports.PerfectScrollbar = PerfectScrollbar;
 exports.default = index;
-exports.PerfectScrollbar = PerfectScrollbar$1;

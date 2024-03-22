@@ -1,8 +1,8 @@
-import buble from 'rollup-plugin-buble'
-import { uglify } from 'rollup-plugin-uglify'
-import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
-import pkg from './package.json'
+import buble from '@rollup/plugin-buble';
+import terser from '@rollup/plugin-terser';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import pkg from './package.json' assert {type: "json"}
 
 const browser = {
   input: 'src/index.js',
@@ -15,7 +15,7 @@ const browser = {
     buble({
       transforms: { forOf: false }
     }),
-    resolve({
+    nodeResolve({
       browser: true, jsnext: true, main: true
     }),
     commonjs()
@@ -30,14 +30,14 @@ const browserMin = {
     file: 'dist/vue3-perfect-scrollbar.umd.min.js'
   },
   plugins: [
-    resolve({
+    nodeResolve({
       browser: true, jsnext: true, main: true
     }),
     commonjs(),
     buble(
       { transforms: { forOf: false } }
     ),
-    uglify()
+    terser()
   ]
 }
 
