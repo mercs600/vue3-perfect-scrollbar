@@ -1,186 +1,214 @@
 # vue3-perfect-scrollbar
-Vue.js minimalistic but powerful wrapper for perfect scrollbar
+A minimalistic yet powerful Vue.js wrapper for [Perfect Scrollbar](https://perfectscrollbar.com/).
 
-# Why I Created it ? 
-Because I ❤️ to use [perfect-scrollbar](https://github.com/utatti/perfect-scrollbar) in my projects (🙌 [utatti](https://github.com/utatti)). But also because the current solutions on github are outdated or overcomplicated.
+## 🔍 Considerations Before Using Custom Scrollbars
+Before implementing custom scrollbars, consider their potential impact on user experience. Native scrollbar styling, as supported by browsers like Chromeoor Firefox often provides a good balance of customization without sacrificing usability. Check out [Chrome's documentation on scrollbar styling](https://chat.openai.com/#:~:text=Chrome%27s%20documentation%20on%20scrollbar%20styling) to see if it meets your needs. If your project requires precise design alignment that native options can't provide, then vue3-perfect-scrollbar is a solid choice.
 
-# Why would you use it ? 
+## 📦 Installation
 
-Because you want to load [perfect-scrollbar](https://github.com/utatti/perfect-scrollbar#) to your Vue project in an easy way. But also because this plugin is updated, tested and build by rollup. So you will not find any unnecessary 💩 code in this repo. I hope 🙏.
-
-If you have any reasonable PR you are welcome 🤘
-
-# Install
-## npm
+### Using `npm`
 
 ```sh
 npm install vue3-perfect-scrollbar
 ```
 
-## yarn 
+### Using `yarn`
 
 ```sh
 yarn add vue3-perfect-scrollbar
 ```
 
-# How to use 
+### Using `pnpm`
+```sh
+pnpm add vue3-perfect-scrollbar
+```
 
-## Global Registration
+## 🔌 How to Use 
+
+### Global Registration
+🚀 [Run on StackBlitz](https://stackblitz.com/edit/vitejs-vite-xpb5dl?file=src%2FApp.vue)
+
+Integrate vue3-perfect-scrollbar globally in your main application file:
 
 ```js
-import { createApp } from 'vue'
-import App from './App.vue'
-import PerfectScrollbar from 'vue3-perfect-scrollbar'
-import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
+import { createApp } from 'vue';
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
+import 'vue3-perfect-scrollbar/style.css';
+import App from './App.vue';
 
-const app = createApp(App)
-app.use(PerfectScrollbar)
-app.mount('#app')
-
+createApp(App).use(PerfectScrollbarPlugin).mount('#app');
 ```
 
-So then you can use this plugin in each component as
+Now, you can leverage the plugin in any component:
 
 ```html
-<perfect-scrollbar>
+<PerfectScrollbar>
     <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-</perfect-scrollbar>
+    <p> ... and much more content </p>
+</PerfectScrollbar>
 ```
 
-This plugin will generate a container with ".ps" class name, you need to customize the height of the container
+Customize the container height as needed:
 
 ```css
 /* example */
 .ps {
-  height: 400px;
+  height: 400px; /* or max-height: 400px; */
 }
 ```
 
-[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/wn7q7o9ww7)
+### Global Options
 
-### Global options
-
-Install method takes additional parameters:
+The install method accepts additional parameters:
 
 ```js
-app.use(PerfectScrollbar, {
-  watchOptions: true,
-  options: {
-    suppressScrollX: true
-  }
-})
+app.use(PerfectScrollbarPlugin, {
+    componentName: 'Scrollbar'
+});
 ```
 
-#### `name {String}`
-Name of your global component.
+#### `componentName {String}`
+The name of your global component.
 
 **Default**: `PerfectScrollbar`
 
-#### `tag {String}`
-Tag which will be render as perfect scrollbar container
+### Local Registration
+🚀 [Run on StackBlitz](hhttps://stackblitz.com/edit/vitejs-vite-uszgyc?file=src%2FApp.vue)
 
-**Default**: `div`
-
-#### `watchOptions {Boolean}`
-Set true if you want to update perfect-scrollbar on options change
-
-**Default**: `false`
-
-#### `options {Object}`: [Options](https://perfectscrollbar.com/#section-options)
-perfect-scrollbar options.
-
-**Default**: `{}`
-
-## Local Registration
+For local registration, import and declare the component within your Vue component file:
 
 ```html
-<template>
-    <div>
-        <perfect-scrollbar>
-            <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-        </perfect-scrollbar>
-    </div>
-</template>
-<script>
+<script setup>
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
-export default {
-    components: {
-        PerfectScrollbar
-    }
-}
 </script>
-<style src="vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css"/>
+
+<template>
+  <PerfectScrollbar>
+    <p>content</p>
+  </PerfectScrollbar>
+</template>
+
+<style>
+@import 'vue3-perfect-scrollbar/style.css';
+
+.ps {
+  max-height: 100px; /* or height: 100px; */
+}
+</style>
 ```
 
-[![Edit Vue Template](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/32o7m59xzm)
+## ⚙️ Props 
 
-# Props 
+Customize the Perfect Scrollbar with the following props:
 
+```ts
+tag?: string;
+options?: PerfectScrollbar.Options;
+```
 
-#### `tag {String}`
-Tag which will be render as perfect scrollbar container
+#### `tag? {String}`
+The tag that will be rendered as the Perfect Scrollbar container.
 
 **Default**: `div`
 
-#### `watchOptions {Boolean}`
-Set true if you want to update perfect-scrollbar on options change
+#### `options? {PerfectScrollbar.Options}`: [Options](https://perfectscrollbar.com/options.html)
+Options for the Perfect Scrollbar library.
 
-**Default**: `false`
-
-#### `options {Object}`: [Options](https://github.com/utatti/perfect-scrollbar#options)
-perfect-scrollbar options.
-
-# Events
-
-You can use Vue.js way to listen on the all perfect-scrollbar events. List of events you can find [here](https://github.com/mdbootstrap/perfect-scrollbar#events)
-
-Simple example:
-```vue
-<template>
-  <div id="app">
-    <perfect-scrollbar @ps-scroll-y="onScroll" ref="scrollbar">
-      <div>your content here</div>
-    </perfect-scrollbar>
-  </div>
-</template>
-
-<script>
-export default {
-  methods: {
-    onScroll(event) {
-      console.log(this.$refs.scrollbar.ps, event);
-    }
-  }
-};
-</script>
+[Explore Perfect Scrollbar options for further customization.](https://perfectscrollbar.com/options.html)
+```ts
+handlers?: string[];
+maxScrollbarLength?: number;
+minScrollbarLength?: number;
+scrollingThreshold?: number;
+scrollXMarginOffset?: number;
+scrollYMarginOffset?: number;
+suppressScrollX?: boolean;
+suppressScrollY?: boolean;
+swipeEasing?: boolean;
+useBothWheelAxes?: boolean;
+wheelPropagation?: boolean;
+wheelSpeed?: number;
 ```
-[![Edit Vue Perfect Scrollbar Event Listening](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-perfect-scrollbar-event-listening-e5eil?fontsize=14&hidenavigation=1&theme=dark)
 
-# DEMO
+## 🔄 Events
+You can listen to all Perfect Scrollbar events.
 
-[https://mercs600.github.io/vue3-perfect-scrollbar/](https://mercs600.github.io/vue3-perfect-scrollbar/). You can also fork example from [codesandbox](https://codesandbox.io/embed/32o7m59xzm)
+🚀 [Run on StackBlitz](https://stackblitz.com/edit/vitejs-vite-p6a2i7?embed=1&file=src%2FApp.vue)
 
-# Cookbook
-
-## Custom scrollbar behavior with router.
-
-One of simple solution to setup custom scrollbar to top when your route is changed. 
-
-1. Add perfect scrollbar as wrapper for router-view and add simple ref
+Listen to all Perfect [Scrollbar events](https://perfectscrollbar.com/events.html). For a comprehensive list of events, visit Perfect Scrollbar events.
+## Example
 ```html
-<perfect-scrollbar ref="scroll">
-  <router-view></router-view>
-</perfect-scrollbar>
-```
+<script setup>
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
 
-2. Add watch on $route to setup scroll container to 0, when route is changed. 
-
-```js
-watch: {
-  $route() {
-    this.$refs.scroll.$el.scrollTop = 0;
-  }
+function onScrollEvent(event) {
+  console.log(event);
 }
+</script>
+
+<template>
+  <PerfectScrollbar @ps-scroll-y="onScrollEvent">
+    <p>content</p>
+  </PerfectScrollbar>
+</template>
 ```
 
-[![Edit vue3-perfect-scrollbar with router](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vue-routing-example-jbokc?fontsize=14&hidenavigation=1&theme=dark)
+### List of Event Keys
+
+```ts
+'scroll',
+'ps-scroll-y',
+'ps-scroll-x',
+'ps-scroll-up',
+'ps-scroll-down',
+'ps-scroll-left',
+'ps-scroll-right',
+'ps-y-reach-start',
+'ps-y-reach-end',
+'ps-x-reach-start',
+'ps-x-reach-end'
+```
+
+## 🧩 Access to PerfectScrollbar Instance.
+
+To gain direct access to the Perfect Scrollbar instance and leverage its API within your Vue component, you can use the ref attribute.
+
+🚀 [Run on StackBlitz](https://stackblitz.com/edit/vitejs-vite-mhnwda?file=src%2FApp.vue)
+
+```html
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { PerfectScrollbar } from 'vue3-perfect-scrollbar';
+import type { PerfectScrollbarExpose } from 'vue3-perfect-scrollbar';
+const scrollbarApi = ref<PerfectScrollbarExpose | null>(null);
+
+onMounted(() => {
+  if (scrollbarApi.value) {
+    console.log(scrollbarApi.value.ps?.settings);
+  }
+})
+</script>
+<template>
+  <PerfectScrollbar ref="scrollbarApi">
+    <p>content</p>
+  </PerfectScrollbar>
+</template>
+```
+
+## 🔌 Use with Nuxt
+
+Add to your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: ['vue3-perfect-scrollbar/nuxt']
+});
+```
+
+
+## 🆘 Bug Reporting
+Found a bug? Here's where to report it:
+
++ If it's about the vue3-perfect-scrollbar wrapper (like how it works with Vue, or issues with props and events), please report these bugs on our vue3-perfect-scrollbar GitHub repo. 
+
++ If the bug is with the Perfect Scrollbar itself (like problems with how it scrolls or looks), you should report it to the official Perfect Scrollbar repo. Remember, vue3-perfect-scrollbar is just a wrapper to make Perfect Scrollbar work with Vue. It doesn't change how Perfect Scrollbar works. So, if there's something wrong with the scrollbar behavior, the Perfect Scrollbar team needs to know.
