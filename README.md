@@ -196,6 +196,7 @@ onMounted(() => {
 ```
 
 ## 🔌 Use with Nuxt
+🚀 [Run on StackBlitz](https://stackblitz.com/edit/nuxt-starter-7bgunj?file=app.vue)
 
 Add to your `nuxt.config.ts`:
 
